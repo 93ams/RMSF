@@ -1,0 +1,38 @@
+{
+  "name": "RMSF2k17",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "start": "node node_modules/react-native/local-cli/cli.js start",
+    "test": "jest"
+  },
+  "dependencies": {
+    "engine.io-client": "^3.1.1",
+    "has-binary2": "^1.0.2",
+    "react": "16.0.0-alpha.6",
+    "react-native": "0.44.2",
+    "react-native-elements": "^0.12.2",
+    "react-native-gcm-android": "^0.2.0",
+    "react-native-notifications": "^1.1.11",
+    "react-native-push-notification": "^3.0.0",
+    "react-native-rest-client": "^0.1.1",
+    "react-native-router-flux": "^3.39.2",
+    "react-native-system-notification": "^0.2.1",
+    "react-native-tab-navigator": "^0.3.3",
+    "react-native-vector-icons": "^4.2.0",
+    "react-redux": "^5.0.5",
+    "redux": "^3.6.0",
+    "redux-thunk": "^2.2.0",
+    "socket.io-client": "^2.0.2",
+    "socket.io-parser": "^3.1.2"
+  },
+  "devDependencies": {
+    "babel-jest": "20.0.3",
+    "babel-preset-react-native": "1.9.2",
+    "jest": "20.0.4",
+    "react-test-renderer": "16.0.0-alpha.6"
+  },
+  "jest": {
+    "preset": "react-native"
+  }
+}
