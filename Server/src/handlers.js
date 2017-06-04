@@ -59,7 +59,15 @@ const get = function(req, res){
 }
 
 const config = function(req, res){
-  res(rfid_ids.toString());
+  const data = parseData(req.payload);
+  console.log('New Device');
+  console.log(data);
+  res.json({
+    '76F46': {
+    	 'downlinkData': rfid_ids.toString()
+     }
+  });
+  //res(rfid_ids.toString());
 }
 
 module.exports = {

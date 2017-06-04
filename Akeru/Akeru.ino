@@ -99,6 +99,8 @@ void setup() {
     {
       Serial.print("Data received : 0x");
       Serial.println(data);
+    } else {
+      Serial.print("No data received");
     }
 }
 
@@ -193,7 +195,7 @@ void loop() {
         return;
       }
 
-      mfrc522.PICC_WakeupA(	buffer,	size);
+      mfrc522.PICC_WakeupA(buffer,	size);
 
 
 ////////////////////////////////////////////////////////////
@@ -352,7 +354,7 @@ void dump_byte_array(byte *buffer, byte size) {
 
 bool initcard(byte *buffer, byte size)
 {
-  if(!first){ mfrc522.PICC_WakeupA(  buffer, size); }
+  if(!first){ mfrc522.PICC_WakeupA(buffer, size); }
   first = false;
   
   // Look for new cards (in case you wonder what PICC means: proximity integrated circuit card)

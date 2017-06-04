@@ -1,7 +1,7 @@
 const handlers = require('./handlers');
 
 const config = {
-  method: 'GET',
+  method: 'POST',
   path: '/config',
   handler: handlers.config
 };
