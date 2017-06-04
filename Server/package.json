@@ -10,6 +10,7 @@
   "dependencies": {
     "hapi": "^16.1.1",
     "hapi-plugin-websocket": "^1.1.5",
+    "node-gcm": "^0.14.6",
     "socket.io": "^2.0.2"
   }
 }

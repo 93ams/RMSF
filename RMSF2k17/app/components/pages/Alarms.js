@@ -11,15 +11,16 @@ import Connector from '../../connectors/alarms';
 export default class Alarms extends Component {
   constructor(props) {
     super(props);
-    const connector = new Connector();
-
+    this.connector = new Connector();
     this.state = { alarms: [] };
+  }
 
-    connector.list()
+  componentWillMount() {
+    this.connector.list()
     .then((alarms) => this.setState({ alarms }))
     .catch((err) => {
       Actions.home();
-      alert('Unnable to get alarms; Error: ', err);
+      alert('Unnable to get alarm; Error: ', err);
     });
   }
 
@@ -33,7 +34,7 @@ export default class Alarms extends Component {
             renderItem={({item}) => (
               <ListItem
                 containerStyle={{ borderBottomWidth: 0 }}
-                title={item.name}
+                title={item.date || item.name}
                 onPress={() => Actions.alarm(item.id)} />
             )}
           />

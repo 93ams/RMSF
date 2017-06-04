@@ -1,11 +1,24 @@
+const gcm = require('node-gcm');
+const tokens = require('./tokens');
+
 var io = null;
 var connections = [];
+
+function removeConnection(socket){
+  const id = connections.indexOf(socket);
+  if(id != -1) connections.splice(id, 1);
+}
 
 const connect = function(listener){
   io = require('socket.io')(listener);
   io.on('connection', function (socket) {
-      console.log('New connection!');
-      socket.emit("newAlarm", { "id": 69 });
+      var localToken;
+      socket.on('register', ({ token }) => {
+        tokens.addToken(token);
+        localToken = token;
+      });
+
+      socket.on('disconnect', () => { removeConnection(socket); });
       connections.push(socket);
   });
 }
@@ -18,5 +31,6 @@ const broadcastAlarm = function(data){
 
 module.exports = {
   getIO,
-  connect
+  connect,
+  broadcastAlarm
 }

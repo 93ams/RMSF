@@ -1,5 +1,10 @@
+const gcm = require('node-gcm');
 const socket = require('./socket');
+const tokens = require('./tokens');
 const io = socket.getIO();
+
+var sender = new gcm.Sender('AIzaSyCra3r9CUqgJLTALPKzvkDBJwkvqHKfFIA'); //TODO: hide
+var rfid_ids = ['7AD816CB', '967BD08C'];
 
 var alarms = [{
   id: 1,
@@ -30,9 +35,16 @@ function parseData(data){
 
 const create = function(req, res){
   const data = parseData(req.payload);
-  console.log(data);
+  data.id = alarms.length;
+  data.date = new Date(data.date);
   alarms.push(data);
-  socket.broadcastAlarm(data);
+  //socket.broadcastAlarm(data);
+  sender.send(new gcm.Message({ data }),
+    { registrationTokens: tokens.getTokens() },
+    function (err, response) {
+    if (err) console.error(err);
+    else console.log(response);
+  });
   res().code(201);
 }
 
@@ -46,7 +58,12 @@ const get = function(req, res){
   res({ alarm });
 }
 
+const config = function(req, res){
+  res(rfid_ids.toString());
+}
+
 module.exports = {
+  config,
   create,
   list,
   get

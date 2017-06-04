@@ -1,5 +1,11 @@
 const handlers = require('./handlers');
 
+const config = {
+  method: 'GET',
+  path: '/config',
+  handler: handlers.config
+};
+
 const create = {
   method: 'POST',
   path: '/alarms',
@@ -19,6 +25,7 @@ const get = {
 };
 
 module.exports = [
+  config,
   create,
   list,
   get

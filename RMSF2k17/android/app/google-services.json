@@ -1,0 +1,23 @@
+{
+  "project_info": {
+    "project_id": "rmsf",
+    "name": "RMSF2k17",
+    "project_number": "696969696969"
+  },
+  "client": [{
+    "client_info": {
+      "mobilesdk_app_id": "1:696969696969:android:0000000000000000",
+      "client_id": "android:com.rmsf2k17",
+      "client_type": 1,
+      "android_client_info": {
+        "package_name": "com.rmsf2k17",
+        "certificate_hash": []
+      }
+    },
+    "api_key": [
+      {
+        "current_key": "AIzaSyCra3r9CUqgJLTALPKzvkDBJwkvqHKfFIA"
+      }
+    ]
+  }]
+}

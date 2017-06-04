@@ -1,20 +1,25 @@
 import React, { Component } from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 import Connector from '../../connectors/alarms';
+import { Actions } from 'react-native-router-flux';
 
 export default class Alarm extends Component {
   constructor(props){
       super(props);
-      console.log(props);
-      const connector = new Connector();
-      let id = props.data;
-      this.state = { id };
-      connector.get(id)
-      .then((alarm) => this.setState({ alarm }))
-      .catch((err) => {
-        Actions.home();
-        alert('Unnable to get alarm; Error: ', err);
-      });
+      this.connector = new Connector();
+      this.state = {
+        id: props.data,
+        alarm: null
+      };
+  }
+
+  componentWillMount() {
+    this.connector.get(this.state.id)
+    .then((alarm) => this.setState({ alarm }))
+    .catch((err) => {
+      Actions.home();
+      alert('Unnable to get alarm; Error: ', err);
+    });
   }
 
   render() {
@@ -23,6 +28,7 @@ export default class Alarm extends Component {
     if(alarm){ datetime = new Date(alarm.date); }
     date = datetime.toISOString().slice(0,10).replace(/-/g,"/");
     time = datetime.toISOString().slice(11,16);
+
     return (
       <View style={styles.container}>
         <Text style={styles.title}>
